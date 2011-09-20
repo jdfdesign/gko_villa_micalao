@@ -1,0 +1,13 @@
+---
+fr:
+  activerecord:
+    errors:
+      models:
+        image:
+          incorrect_dimensions: Incorrect Dimensions
+  admin:
+    homes:
+      actions:
+        destroy: Destroy
+  flash:
+    close: Close

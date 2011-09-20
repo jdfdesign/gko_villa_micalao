@@ -1,0 +1,219 @@
+GIT
+  remote: git@github.com:jdfdesign/smurf.git
+  revision: 3b5b3222268f6d931308171a61c2608f7b74736e
+  specs:
+    smurf (1.0.7)
+      rails (= 3.0.9.rc5)
+      riot (>= 0.12.0)
+
+PATH
+  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_auth
+  specs:
+    gko-auth (0.0.28)
+      cancan (~> 1.6.0)
+      devise (~> 1.4.0)
+      gko-core
+      switch_user (= 0.6.0)
+
+PATH
+  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_core
+  specs:
+    gko-core (0.0.43)
+      activesupport-slices (= 0.0.2)
+      acts_as_indexed (~> 0.7)
+      bundler (= 1.1.pre.4)
+      capistrano
+      crummy (>= 1.0.1)
+      exception_notification
+      ffaker
+      gem-patching (= 0.0.3)
+      globalize3 (~> 0.1)
+      has_scope (~> 0.5)
+      i18n-missing_translations (= 0.0.1)
+      inherited_resources (= 1.2.2)
+      inherited_resources_helpers (= 0.0.14)
+      kronn-has_many_polymorphs (= 3.0.3)
+      minimal (= 0.0.25)
+      mysql2 (= 0.2.7)
+      nested_set (= 1.6.8)
+      rails (= 3.0.9.rc5)
+      rake (= 0.9.2)
+      routing-filter (= 0.2.4)
+      silence_log_tailer (= 0.0.1)
+      simple_form (~> 1.4)
+      simple_table (= 0.0.18)
+      truncate_html (~> 0.5)
+      uuid (= 2.3.1)
+      will_paginate (~> 3.0)
+
+PATH
+  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_images
+  specs:
+    gko-images (0.0.29)
+      dragonfly (~> 0.9.4)
+      gko-core
+      mime-types
+      rack-cache (>= 0.5.3)
+
+PATH
+  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_inquiry
+  specs:
+    gko-inquiry (0.0.31)
+      filters_spam (~> 0.2)
+      gko-core
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    abstract (1.0.0)
+    actionmailer (3.0.9.rc5)
+      actionpack (= 3.0.9.rc5)
+      mail (~> 2.2.19)
+    actionpack (3.0.9.rc5)
+      activemodel (= 3.0.9.rc5)
+      activesupport (= 3.0.9.rc5)
+      builder (~> 2.1.2)
+      erubis (~> 2.6.6)
+      i18n (~> 0.5.0)
+      rack (~> 1.2.1)
+      rack-mount (~> 0.6.14)
+      rack-test (~> 0.5.7)
+      tzinfo (~> 0.3.23)
+    activemodel (3.0.9.rc5)
+      activesupport (= 3.0.9.rc5)
+      builder (~> 2.1.2)
+      i18n (~> 0.5.0)
+    activerecord (3.0.9.rc5)
+      activemodel (= 3.0.9.rc5)
+      activesupport (= 3.0.9.rc5)
+      arel (~> 2.0.10)
+      tzinfo (~> 0.3.23)
+    activeresource (3.0.9.rc5)
+      activemodel (= 3.0.9.rc5)
+      activesupport (= 3.0.9.rc5)
+    activesupport (3.0.9.rc5)
+    activesupport-slices (0.0.2)
+    acts_as_indexed (0.7.3)
+    arel (2.0.10)
+    bcrypt-ruby (3.0.1)
+    builder (2.1.2)
+    cancan (1.6.5)
+    capistrano (2.8.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    crummy (1.2)
+    devise (1.4.5)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.0.3)
+    dragonfly (0.9.8)
+      rack
+    erubis (2.6.6)
+      abstract (>= 1.0.0)
+    exception_notification (2.5.2)
+      actionmailer (>= 3.0.4)
+    ffaker (1.8.1)
+    filters_spam (0.3)
+    gem-patching (0.0.3)
+    globalize3 (0.1.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+    has_scope (0.5.1)
+    highline (1.6.2)
+    i18n (0.5.0)
+    i18n-missing_translations (0.0.1)
+    inherited_resources (1.2.2)
+      has_scope (~> 0.5.0)
+      responders (~> 0.6.0)
+    inherited_resources_helpers (0.0.14)
+    kronn-has_many_polymorphs (3.0.3)
+      activerecord
+    macaddr (1.4.0)
+      systemu (~> 2.2.0)
+    mail (2.2.19)
+      activesupport (>= 2.3.6)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    mime-types (1.16)
+    minimal (0.0.25)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    mysql2 (0.2.7)
+    nested_set (1.6.8)
+      activerecord (>= 3.0.0)
+      railties (>= 3.0.0)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.2.1)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
+    orm_adapter (0.0.5)
+    polyglot (0.3.2)
+    rack (1.2.4)
+    rack-cache (1.1)
+      rack (>= 0.4)
+    rack-mount (0.6.14)
+      rack (>= 1.0.0)
+    rack-rewrite (1.0.2)
+    rack-test (0.5.7)
+      rack (>= 1.0)
+    rails (3.0.9.rc5)
+      actionmailer (= 3.0.9.rc5)
+      actionpack (= 3.0.9.rc5)
+      activerecord (= 3.0.9.rc5)
+      activeresource (= 3.0.9.rc5)
+      activesupport (= 3.0.9.rc5)
+      bundler (~> 1.0)
+      railties (= 3.0.9.rc5)
+    railties (3.0.9.rc5)
+      actionpack (= 3.0.9.rc5)
+      activesupport (= 3.0.9.rc5)
+      rake (>= 0.8.7)
+      rdoc (~> 3.4)
+      thor (~> 0.14.4)
+    rake (0.9.2)
+    rdoc (3.9.4)
+    responders (0.6.4)
+    riot (0.12.5)
+      rr
+    routing-filter (0.2.4)
+      actionpack
+    rr (1.0.4)
+    silence_log_tailer (0.0.1)
+    simple_form (1.5.0)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+    simple_table (0.0.18)
+      actionpack (~> 3.0.0)
+      activerecord (~> 3.0.0)
+      activesupport (~> 3.0.0)
+    switch_user (0.6.0)
+    systemu (2.2.0)
+    thor (0.14.6)
+    treetop (1.4.10)
+      polyglot
+      polyglot (>= 0.3.1)
+    truncate_html (0.5.1)
+    tzinfo (0.3.29)
+    uuid (2.3.1)
+      macaddr (~> 1.0)
+    warden (1.0.5)
+      rack (>= 1.0)
+    will_paginate (3.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  gko-auth!
+  gko-core!
+  gko-images!
+  gko-inquiry!
+  rack-rewrite (= 1.0.2)
+  smurf!
