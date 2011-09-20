@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:jdfdesign/gko_cms.git
-  revision: 9c9fad3764f8208a9221b007aedd3ddb9d7dce3d
+  revision: 037e266c419b52eec458c2dd7aef1f70c38060eb
   specs:
     gko-auth (0.0.28)
       cancan (~> 1.6.0)
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git@github.com:jdfdesign/gko_cms.git
-  revision: 9c9fad3764f8208a9221b007aedd3ddb9d7dce3d
+  revision: 037e266c419b52eec458c2dd7aef1f70c38060eb
   specs:
     gko-inquiry (0.0.31)
       filters_spam (~> 0.2)
@@ -18,9 +18,9 @@ GIT
 
 GIT
   remote: git@github.com:jdfdesign/gko_cms.git
-  revision: 9c9fad3764f8208a9221b007aedd3ddb9d7dce3d
+  revision: 037e266c419b52eec458c2dd7aef1f70c38060eb
   specs:
-    gko-images (0.0.29)
+    gko-images (0.0.30)
       dragonfly (~> 0.9.4)
       gko-core
       mime-types
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git@github.com:jdfdesign/gko_cms.git
-  revision: 9c9fad3764f8208a9221b007aedd3ddb9d7dce3d
+  revision: 037e266c419b52eec458c2dd7aef1f70c38060eb
   specs:
     gko-core (0.0.43)
       activesupport-slices (= 0.0.2)
@@ -217,7 +217,7 @@ PLATFORMS
 DEPENDENCIES
   gko-auth (= 0.0.28)!
   gko-core (= 0.0.43)!
-  gko-images (= 0.0.29)!
+  gko-images (= 0.0.30)!
   gko-inquiry (= 0.0.31)!
   rack-rewrite (= 1.0.2)
   smurf!
