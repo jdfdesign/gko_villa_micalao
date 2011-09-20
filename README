@@ -1,0 +1,3 @@
+cd ~/developer/workspace/gko_villa_micalao
+bundle install
+rails s
