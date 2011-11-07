@@ -1,6 +1,6 @@
 source :rubygems
 group :production do
-  gem 'gko-core', '= 0.0.65', :git => 'git@github.com:jdfdesign/gko_cms.git'
+  gem 'gko-core', '= 0.0.66', :git => 'git@github.com:jdfdesign/gko_cms.git'
   gem 'gko-auth', '= 0.0.28', :git => 'git@github.com:jdfdesign/gko_cms.git'
   gem 'gko-images', '= 0.0.43', :git => 'git@github.com:jdfdesign/gko_cms.git'
   gem 'gko-inquiry', '= 0.0.32', :git => 'git@github.com:jdfdesign/gko_cms.git' 
