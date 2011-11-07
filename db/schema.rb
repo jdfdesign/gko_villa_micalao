@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828111111) do
+ActiveRecord::Schema.define(:version => 20111106111111) do
 
   create_table "accounts", :force => true do |t|
     t.string   "reference",  :limit => 40
@@ -57,8 +57,10 @@ ActiveRecord::Schema.define(:version => 20110828111111) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "globalized",                      :default => 0
+    t.integer  "position",                        :default => 1
   end
 
+  add_index "contents", ["position", "section_id"], :name => "index_contents_on_position_and_section_id"
   add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
   add_index "contents", ["site_id"], :name => "index_contents_on_site_id"
   add_index "contents", ["slug"], :name => "index_contents_on_slug"
@@ -93,6 +95,40 @@ ActiveRecord::Schema.define(:version => 20110828111111) do
   add_index "image_assignments", ["attachable_id", "attachable_type"], :name => "index_image_assignments_on_attachable_id_and_attachable_type"
   add_index "image_assignments", ["image_id"], :name => "index_image_assignments_on_image_id"
 
+  create_table "image_folders", :force => true do |t|
+    t.string   "name"
+    t.integer  "site_id"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "image_folders", ["parent_id"], :name => "index_image_folders_on_parent_id"
+  add_index "image_folders", ["site_id"], :name => "index_image_folders_on_site_id"
+
+  create_table "image_stickers", :force => true do |t|
+    t.string   "name"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "image_stickers", ["name"], :name => "index_image_stickers_on_name"
+  add_index "image_stickers", ["site_id"], :name => "index_image_stickers_on_site_id"
+
+  create_table "image_stickings", :force => true do |t|
+    t.integer  "sticker_id"
+    t.integer  "image_id"
+    t.integer  "image_stickings_count", :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "image_stickings", ["sticker_id", "image_id"], :name => "index_image_stickings_on_sticker_id_and_image_id"
+
   create_table "image_translations", :force => true do |t|
     t.integer  "image_id"
     t.string   "locale"
@@ -121,10 +157,12 @@ ActiveRecord::Schema.define(:version => 20110828111111) do
     t.string   "image_uid"
     t.string   "image_ext"
     t.integer  "globalized",                             :default => 0
+    t.integer  "image_folder_id"
   end
 
   add_index "images", ["account_id"], :name => "index_images_on_account_id"
   add_index "images", ["author_id"], :name => "index_images_on_author_id"
+  add_index "images", ["image_folder_id"], :name => "index_images_on_image_folder_id"
   add_index "images", ["site_id"], :name => "index_images_on_site_id"
 
   create_table "inquiries", :force => true do |t|

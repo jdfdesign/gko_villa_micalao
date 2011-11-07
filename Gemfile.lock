@@ -1,6 +1,19 @@
 GIT
-  remote: git@github.com:jdfdesign/gko_cms.git
-  revision: c066c70d17dd657361eecea3a73d24ea036ea8bf
+  remote: git://github.com/thedarkone/rails-dev-boost.git
+  revision: c648d229fa981c5f9bcbd8ac6baa520582c248c6
+  specs:
+    rails-dev-boost (0.1.1)
+
+GIT
+  remote: git@github.com:jdfdesign/smurf.git
+  revision: 3b5b3222268f6d931308171a61c2608f7b74736e
+  specs:
+    smurf (1.0.7)
+      rails (= 3.0.9.rc5)
+      riot (>= 0.12.0)
+
+PATH
+  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_auth
   specs:
     gko-auth (0.0.28)
       cancan (~> 1.6.0)
@@ -8,29 +21,10 @@ GIT
       gko-core
       switch_user (= 0.6.0)
 
-GIT
-  remote: git@github.com:jdfdesign/gko_cms.git
-  revision: c066c70d17dd657361eecea3a73d24ea036ea8bf
+PATH
+  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_core
   specs:
-    gko-inquiry (0.0.31)
-      filters_spam (~> 0.2)
-      gko-core
-
-GIT
-  remote: git@github.com:jdfdesign/gko_cms.git
-  revision: c066c70d17dd657361eecea3a73d24ea036ea8bf
-  specs:
-    gko-images (0.0.30)
-      dragonfly (~> 0.9.4)
-      gko-core
-      mime-types
-      rack-cache (>= 0.5.3)
-
-GIT
-  remote: git@github.com:jdfdesign/gko_cms.git
-  revision: c066c70d17dd657361eecea3a73d24ea036ea8bf
-  specs:
-    gko-core (0.0.44)
+    gko-core (0.0.65)
       activesupport-slices (= 0.0.2)
       acts_as_indexed (~> 0.7)
       bundler (= 1.1.pre.4)
@@ -43,7 +37,7 @@ GIT
       has_scope (~> 0.5)
       i18n-missing_translations (= 0.0.1)
       inherited_resources (= 1.2.2)
-      inherited_resources_helpers (= 0.0.14)
+      inherited_resources_helpers (= 0.0.15)
       kronn-has_many_polymorphs (= 3.0.3)
       minimal (= 0.0.25)
       mysql2 (= 0.2.7)
@@ -58,13 +52,21 @@ GIT
       uuid (= 2.3.1)
       will_paginate (~> 3.0)
 
-GIT
-  remote: git@github.com:jdfdesign/smurf.git
-  revision: 3b5b3222268f6d931308171a61c2608f7b74736e
+PATH
+  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_images
   specs:
-    smurf (1.0.7)
-      rails (= 3.0.9.rc5)
-      riot (>= 0.12.0)
+    gko-images (0.0.43)
+      dragonfly (~> 0.9.8)
+      gko-core
+      mime-types
+      rack-cache (>= 0.5.3)
+
+PATH
+  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_inquiry
+  specs:
+    gko-inquiry (0.0.32)
+      filters_spam (~> 0.2)
+      gko-core
 
 GEM
   remote: http://rubygems.org/
@@ -97,7 +99,7 @@ GEM
       activesupport (= 3.0.9.rc5)
     activesupport (3.0.9.rc5)
     activesupport-slices (0.0.2)
-    acts_as_indexed (0.7.3)
+    acts_as_indexed (0.7.6)
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
     builder (2.1.2)
@@ -108,8 +110,13 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    chunky_png (1.2.5)
+    compass (0.11.5)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     crummy (1.2)
-    devise (1.4.5)
+    devise (1.4.9)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
@@ -121,6 +128,7 @@ GEM
       actionmailer (>= 3.0.4)
     ffaker (1.8.1)
     filters_spam (0.3)
+    fssm (0.2.7)
     gem-patching (0.0.3)
     globalize3 (0.1.0)
       activemodel (>= 3.0.0)
@@ -132,7 +140,7 @@ GEM
     inherited_resources (1.2.2)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
-    inherited_resources_helpers (0.0.14)
+    inherited_resources_helpers (0.0.15)
     kronn-has_many_polymorphs (3.0.3)
       activerecord
     macaddr (1.4.0)
@@ -189,8 +197,9 @@ GEM
     routing-filter (0.2.4)
       actionpack
     rr (1.0.4)
+    sass (3.1.10)
     silence_log_tailer (0.0.1)
-    simple_form (1.5.0)
+    simple_form (1.5.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     simple_table (0.0.18)
@@ -215,9 +224,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  gko-auth (= 0.0.28)!
-  gko-core (= 0.0.44)!
-  gko-images (= 0.0.30)!
-  gko-inquiry (= 0.0.31)!
+  compass (>= 0.11.5)
+  gko-auth!
+  gko-core!
+  gko-images!
+  gko-inquiry!
   rack-rewrite (= 1.0.2)
+  rails-dev-boost!
   smurf!
