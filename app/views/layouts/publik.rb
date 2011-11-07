@@ -30,7 +30,7 @@ class Layouts::Publik < Layouts::BasePublic
             :locals => { 
               :images => background_images,
               :image_style => 'x570',
-              :thumb_style => '110x110>'
+              :thumb_style => '110x110'
             }
         end
       end if background_images.any?

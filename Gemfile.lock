@@ -1,19 +1,6 @@
 GIT
-  remote: git://github.com/thedarkone/rails-dev-boost.git
-  revision: c648d229fa981c5f9bcbd8ac6baa520582c248c6
-  specs:
-    rails-dev-boost (0.1.1)
-
-GIT
-  remote: git@github.com:jdfdesign/smurf.git
-  revision: 3b5b3222268f6d931308171a61c2608f7b74736e
-  specs:
-    smurf (1.0.7)
-      rails (= 3.0.9.rc5)
-      riot (>= 0.12.0)
-
-PATH
-  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_auth
+  remote: git@github.com:jdfdesign/gko_cms.git
+  revision: 6f2aecd20930beffbb5ee0db439c226bca547d05
   specs:
     gko-auth (0.0.28)
       cancan (~> 1.6.0)
@@ -21,8 +8,27 @@ PATH
       gko-core
       switch_user (= 0.6.0)
 
-PATH
-  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_core
+GIT
+  remote: git@github.com:jdfdesign/gko_cms.git
+  revision: 6f2aecd20930beffbb5ee0db439c226bca547d05
+  specs:
+    gko-inquiry (0.0.32)
+      filters_spam (~> 0.2)
+      gko-core
+
+GIT
+  remote: git@github.com:jdfdesign/gko_cms.git
+  revision: 6f2aecd20930beffbb5ee0db439c226bca547d05
+  specs:
+    gko-images (0.0.43)
+      dragonfly (~> 0.9.8)
+      gko-core
+      mime-types
+      rack-cache (>= 0.5.3)
+
+GIT
+  remote: git@github.com:jdfdesign/gko_cms.git
+  revision: 6f2aecd20930beffbb5ee0db439c226bca547d05
   specs:
     gko-core (0.0.65)
       activesupport-slices (= 0.0.2)
@@ -52,21 +58,13 @@ PATH
       uuid (= 2.3.1)
       will_paginate (~> 3.0)
 
-PATH
-  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_images
+GIT
+  remote: git@github.com:jdfdesign/smurf.git
+  revision: 3b5b3222268f6d931308171a61c2608f7b74736e
   specs:
-    gko-images (0.0.43)
-      dragonfly (~> 0.9.8)
-      gko-core
-      mime-types
-      rack-cache (>= 0.5.3)
-
-PATH
-  remote: /Users/regisbruggheman/Developer/Workspace/gko_cms/gko_inquiry
-  specs:
-    gko-inquiry (0.0.32)
-      filters_spam (~> 0.2)
-      gko-core
+    smurf (1.0.7)
+      rails (= 3.0.9.rc5)
+      riot (>= 0.12.0)
 
 GEM
   remote: http://rubygems.org/
@@ -225,10 +223,9 @@ PLATFORMS
 
 DEPENDENCIES
   compass (>= 0.11.5)
-  gko-auth!
-  gko-core!
-  gko-images!
-  gko-inquiry!
+  gko-auth (= 0.0.28)!
+  gko-core (= 0.0.65)!
+  gko-images (= 0.0.43)!
+  gko-inquiry (= 0.0.32)!
   rack-rewrite (= 1.0.2)
-  rails-dev-boost!
   smurf!
