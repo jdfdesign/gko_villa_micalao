@@ -1,0 +1,246 @@
+
+
+$themeColor: #f89925;
+$brandHeight: 62px;
+$contentHeight: 570px;
+$totalWidth: 896px;
+@import "variables";
+$totalHeight: $contentHeight + $footerHeight + $copyrightHeight + $navbarHeight;
+
+
+@import "twitter/bootstrap";
+@import "gko/public/base";
+@import "flexslider/flexslider";
+@import "jscrollpane";
+
+* {
+	@include box-sizing(border-box);
+}
+a:focus {
+  outline: 0;
+}
+
+
+/*-----------------------------------------
+ STRUCTURAL LAYOUT 
+----------------------------------------- */
+
+.navbar .navbar-inner,
+.container-fluid {
+	padding: 0;
+}
+/*-----------------------------------------
+ HEADER
+----------------------------------------- */
+.navbar {
+	margin-bottom: 0;
+	.brand {
+		float: left;
+		margin: 0;
+		padding: $baseLineHeight / 4 0;
+		a {
+			color: $navbarBrandColor;
+			cursor: pointer;
+			padding: 0;
+			margin: 0 auto;
+			background: transparent image-url("logo.png") center center no-repeat;
+			text-decoration: none;
+			display: block;
+			@include size($brandHeight,182px);
+			@include hide-text;
+			&:hover {
+				color: $white;
+				text-decoration: none;
+			};
+		}
+	}
+	.nav > li > a {
+		text-transform: capitalize;
+		padding: 44px 8px 0;
+	}
+}
+
+.header-top {
+	position: absolute;
+	right: 0;
+	top: 0;
+	nav {
+		float: left;
+	}
+	.nav > li > a {
+		text-transform: capitalize;
+		padding: 0;
+	}
+}
+
+/*-----------------------------------------
+ FOOTER
+----------------------------------------- */
+.footer {
+	.nav > li > a {
+		text-transform: capitalize;
+	}
+}
+
+/*-----------------------------------------
+ CONTENT
+----------------------------------------- */
+
+.slider-flexslider {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+.carousel-flexslider {
+	display: none;
+}
+#content-tab {
+	display: none;
+}
+
+/* CUSTOMIZE THE COPYRIGHT
+  -------------------------------------------------- */
+#copyright-container {
+	a {
+		font-weight: normal;
+	}
+}
+ /* RESPONSIVE CSS
+    -------------------------------------------------- */
+@import "twitter/bootstrap/responsive";
+
+
+@media (max-width: 767px) {
+	body {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	#main-container {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+@media (max-width: 895px) {
+
+
+	.navbar-inner {
+		background-color: $themeColor;
+		//@include gradient-vertical($themeColor, $themeColor);
+	  	@include border-radius(0);
+	  	@include box-shadow(none);
+		padding: 0
+	}
+
+	.navbar, .navbar-fixed-top {
+		margin-bottom: 0;
+		.brand {
+			float: none;
+			text-align: center;
+			margin: $baseLineHeight 0;
+		}	
+		.nav-collapse {
+			border-top: 1px solid lightGrey;
+		}
+
+		.nav-collapse nav,
+		.nav-collapse .nav {
+			@include clearfix();
+			margin: 0;
+		}
+		.nav-collapse .dropdown-menu {
+			margin: 0;
+		}
+		.nav-collapse .nav > li,
+		.nav-collapse .dropdown-menu li {
+		  	//margin-left: 24px;
+			border-bottom: 1px solid $navbarLinkColor;
+		}
+		.nav-collapse .dropdown-menu li:last-child {
+			border-bottom: none;
+		}
+
+		.nav-collapse .nav > li > a,
+		.nav-collapse .dropdown-menu a {
+		  font-weight: normal;
+		  @include border-radius(0);
+		}
+		
+		// Hover state
+		// -----------
+		.dropdown-menu li > a:hover,
+		.dropdown-menu li > a:focus,
+		.dropdown-submenu:hover > a {
+		  color: $navbarLinkColorHover;
+		  @include gradient-vertical($themeColor, darken($themeColor, 5%));
+		}
+
+		// Active state
+		// ------------
+		.dropdown-menu .active > a,
+		.dropdown-menu .active > a:hover {
+		  color: $navbarLinkColorHover;
+		  @include gradient-vertical($themeColor, darken($themeColor, 5%));
+		}
+		
+	}
+}
+@media (min-width: 896px) {
+	.navbar {
+		.nav-collapse {
+			float: right;
+		}
+
+	}
+	#wrapper-wide-body {
+		position: absolute;
+		width: $totalWidth;
+		height: $contentHeight + $footerHeight + $copyrightHeight + $navbarHeight;/* header + footer + content */
+		overflow:hidden;
+		top: 50%;
+		margin-top: -$totalHeight / 2;
+		left: 50%;
+		margin-left: -$totalWidth / 2;
+	}
+	#main-row {
+		position: relative;
+	}
+	.content-wrapper {
+		position: absolute;
+		right:0px;
+		bottom: 0;
+		top: 0;
+		width: (($totalWidth / 2) - 100);
+		overflow:visible; /* ! display tab */
+		z-index: $zindexDropdown - 10;
+		padding: 0 12px 0;
+		background: #000;
+		background:rgba(0,0,0,.7);
+		color:#b7b7b7;
+	}
+	.content-inner {
+		height: $contentHeight; /* must have an px height for scrollpane */
+
+	}
+	#content-tab {
+		position: absolute;
+		left: -48px;
+		top: 0;
+		@include square(48px);
+		background: #000;
+		background:rgba(0,0,0,.7);
+		text-align: center;
+		padding-top: 12px;
+	}
+	.carousel-flexslider {
+		position: absolute;
+		margin: 0;
+		padding: 0;
+		bottom: 0;
+		border: none;
+		border-top: 1px solid $white;
+		li {
+			margin-right: 1px;
+			cursor: pointer;
+		}
+	}
+}

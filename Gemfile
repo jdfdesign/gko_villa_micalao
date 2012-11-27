@@ -1,20 +1,25 @@
 source :rubygems
+
+gem 'iconv'
+
+group :assets do
+ gem 'sass-rails', '~> 3.2.5'
+ gem 'coffee-rails', '~> 3.2.2'
+ gem 'uglifier', '>= 1.0.3'
+end
+
+prod_location = 'git@github.com:jdfdesign/gko_cms3.git'
+prod_version = "= 0.5.18"
+
 group :production do
-  gem 'gko-core', '= 0.0.66', :git => 'git@github.com:jdfdesign/gko_cms.git'
-  gem 'gko-auth', '= 0.0.28', :git => 'git@github.com:jdfdesign/gko_cms.git'
-  gem 'gko-images', '= 0.0.43', :git => 'git@github.com:jdfdesign/gko_cms.git'
-  gem 'gko-inquiry', '= 0.0.32', :git => 'git@github.com:jdfdesign/gko_cms.git' 
-  gem 'rack-rewrite', '= 1.0.2'
-  gem 'smurf', :git => 'git@github.com:jdfdesign/smurf.git'
-  gem "compass", ">= 0.11.5" 
+	gem "gko_core", prod_version, :git => prod_location
+	gem "gko_auth", prod_version, :git => prod_location
+	gem "gko_images", prod_version, :git => prod_location
+	gem "gko_inquiries", prod_version, :git => prod_location
 end
 #group :development do
-#  gem "gko-core", :path => File.expand_path('../../gko_cms/gko_core', __FILE__)
-#  gem "gko-auth", :path => File.expand_path('../../gko_cms/gko_auth', __FILE__)
-#  gem "gko-images", :path => File.expand_path('../../gko_cms/gko_images', __FILE__)
-#  gem "gko-inquiry", :path => File.expand_path('../../gko_cms/gko_inquiry', __FILE__)
-#  gem 'smurf', :git => 'git@github.com:jdfdesign/smurf.git'
-#  gem 'rack-rewrite', '= 1.0.2'
-#  gem "compass", ">= 0.11.5"
-#  gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
+#	gem "gko_core", :path => '~/Github/gko_cms3/gko_core'
+#	gem "gko_auth", :path => '~/Github/gko_cms3/gko_auth'
+#	gem "gko_images", :path => '~/Github/gko_cms3/gko_images'
+#	gem "gko_inquiries", :path => '~/Github/gko_cms3/gko_inquiries'
 #end

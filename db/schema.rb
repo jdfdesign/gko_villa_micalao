@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111106111111) do
+ActiveRecord::Schema.define(:version => 20121127194300) do
 
   create_table "accounts", :force => true do |t|
     t.string   "reference",  :limit => 40
@@ -23,6 +23,28 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.datetime "updated_at"
   end
 
+  create_table "assets", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "content_type"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "size"
+    t.string   "source"
+    t.string   "source_filename"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "assets", ["site_id"], :name => "index_assets_on_site_id"
+
+  create_table "configurations", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "name"
+    t.string   "type",       :limit => 50
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
   create_table "content_translations", :force => true do |t|
     t.integer  "content_id"
     t.string   "locale"
@@ -31,7 +53,6 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.string   "meta_title"
     t.text     "meta_description"
     t.string   "title"
-    t.text     "meta_keywords"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.integer  "site_id"
     t.integer  "section_id"
     t.integer  "account_id"
-    t.integer  "author_id"
     t.string   "type"
     t.string   "title"
     t.string   "slug"
@@ -51,15 +71,15 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.string   "layout",           :limit => 40
     t.string   "meta_title"
     t.text     "meta_description"
-    t.text     "meta_keywords"
     t.text     "options"
     t.string   "author_name",      :limit => 120
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "globalized",                      :default => 0
     t.integer  "position",                        :default => 1
+    t.integer  "access_count",                    :default => 0
   end
 
+  add_index "contents", ["access_count"], :name => "index_contents_on_access_count"
   add_index "contents", ["position", "section_id"], :name => "index_contents_on_position_and_section_id"
   add_index "contents", ["section_id"], :name => "index_contents_on_section_id"
   add_index "contents", ["site_id"], :name => "index_contents_on_site_id"
@@ -75,13 +95,61 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.datetime "updated_at"
   end
 
-  create_table "groups", :force => true do |t|
+  create_table "dynamic_files", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "type"
+    t.string   "file_type"
     t.string   "name"
-    t.string   "description"
-    t.boolean  "restricted"
+    t.string   "format"
+    t.string   "handler"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "dynamic_files", ["name"], :name => "index_dynamic_files_on_name"
+  add_index "dynamic_files", ["site_id"], :name => "index_dynamic_files_on_site_id"
+
+  create_table "element_images", :id => false, :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "section_id"
+    t.integer  "image_id"
+    t.string   "title"
+    t.string   "caption"
+    t.string   "link"
+    t.string   "link_target"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "element_images", ["image_id"], :name => "index_element_images_on_image_id"
+  add_index "element_images", ["section_id"], :name => "index_element_images_on_section_id"
+  add_index "element_images", ["site_id"], :name => "index_element_images_on_site_id"
+
+  create_table "field_types", :force => true do |t|
+    t.string   "name"
+    t.string   "presentation"
+    t.string   "value_type"
+    t.integer  "site_id"
+    t.string   "class_name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "field_types", ["name"], :name => "index_field_types_on_name"
+  add_index "field_types", ["site_id", "class_name"], :name => "index_field_types_on_site_id_and_class_name"
+
+  create_table "field_values", :force => true do |t|
+    t.integer  "field_type_id"
+    t.integer  "customizable_id"
+    t.string   "customizable_type"
+    t.text     "body"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "field_values", ["customizable_id", "customizable_type"], :name => "index_field_values_on_customizable_id_and_customizable_type"
+  add_index "field_values", ["field_type_id"], :name => "index_field_values_on_field_type_id"
 
   create_table "image_assignments", :force => true do |t|
     t.integer  "position",                      :default => 1, :null => false
@@ -109,44 +177,19 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
   add_index "image_folders", ["parent_id"], :name => "index_image_folders_on_parent_id"
   add_index "image_folders", ["site_id"], :name => "index_image_folders_on_site_id"
 
-  create_table "image_stickers", :force => true do |t|
-    t.string   "name"
-    t.integer  "site_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "image_stickers", ["name"], :name => "index_image_stickers_on_name"
-  add_index "image_stickers", ["site_id"], :name => "index_image_stickers_on_site_id"
-
-  create_table "image_stickings", :force => true do |t|
-    t.integer  "sticker_id"
+  create_table "image_folders_images", :id => false, :force => true do |t|
+    t.integer  "image_folder_id"
     t.integer  "image_id"
-    t.integer  "image_stickings_count", :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
-  add_index "image_stickings", ["sticker_id", "image_id"], :name => "index_image_stickings_on_sticker_id_and_image_id"
-
-  create_table "image_translations", :force => true do |t|
-    t.integer  "image_id"
-    t.string   "locale"
-    t.string   "alt"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "image_translations", ["image_id"], :name => "index_image_translations_on_image_id"
+  add_index "image_folders_images", ["image_folder_id", "image_id"], :name => "index_image_folders_images_on_image_folder_id_and_image_id"
+  add_index "image_folders_images", ["image_id", "image_folder_id"], :name => "index_image_folders_images_on_image_id_and_image_folder_id"
 
   create_table "images", :force => true do |t|
-    t.string   "title",                   :limit => 100
-    t.string   "alt"
-    t.integer  "account_id"
-    t.integer  "author_id"
     t.integer  "site_id"
-    t.integer  "image_assignments_count",                :default => 0
+    t.integer  "image_assignments_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_mime_type"
@@ -155,14 +198,8 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.integer  "image_width"
     t.integer  "image_height"
     t.string   "image_uid"
-    t.string   "image_ext"
-    t.integer  "globalized",                             :default => 0
-    t.integer  "image_folder_id"
   end
 
-  add_index "images", ["account_id"], :name => "index_images_on_account_id"
-  add_index "images", ["author_id"], :name => "index_images_on_author_id"
-  add_index "images", ["image_folder_id"], :name => "index_images_on_image_folder_id"
   add_index "images", ["site_id"], :name => "index_images_on_site_id"
 
   create_table "inquiries", :force => true do |t|
@@ -184,47 +221,91 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
 
   add_index "inquiries", ["site_id"], :name => "index_inquiries_on_site_id"
 
-  create_table "mail_methods", :force => true do |t|
+  create_table "languages", :force => true do |t|
     t.integer  "site_id"
-    t.string   "environment"
-    t.boolean  "active",                 :default => true
-    t.boolean  "enable_mail_delivery",   :default => true
-    t.string   "mail_host"
-    t.string   "mail_domain"
-    t.integer  "mail_port",              :default => 25
-    t.string   "mail_auth_type"
-    t.string   "smtp_username"
-    t.string   "smtp_password"
-    t.string   "secure_connection_type"
-    t.string   "mails_from"
-    t.string   "mail_bcc"
-    t.string   "intercept_email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "code"
+    t.integer  "position",     :default => 1
+    t.string   "presentation"
+    t.boolean  "public",       :default => false
+    t.boolean  "default",      :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
-  add_index "mail_methods", ["site_id"], :name => "index_mail_methods_on_site_id"
+  add_index "languages", ["site_id", "position"], :name => "index_languages_on_site_id_and_position"
+  add_index "languages", ["site_id"], :name => "index_languages_on_site_id"
 
-  create_table "permission_groups", :force => true do |t|
-    t.integer "group_id"
-    t.integer "permission_id"
-  end
-
-  add_index "permission_groups", ["group_id", "permission_id"], :name => "index_permission_groups_on_group_id_and_permission_id"
-
-  create_table "permissions", :force => true do |t|
-    t.string   "plugin_name"
+  create_table "liquid_models", :force => true do |t|
+    t.integer  "site_id"
+    t.text     "body"
     t.string   "path"
-    t.string   "action"
-    t.boolean  "restricted"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "format"
+    t.string   "locale"
+    t.string   "handler"
+    t.boolean  "partial",    :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
+
+  create_table "partner_translations", :force => true do |t|
+    t.integer  "partner_id"
+    t.string   "locale"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "partner_translations", ["locale"], :name => "index_partner_translations_on_locale"
+  add_index "partner_translations", ["partner_id"], :name => "index_partner_translations_on_partner_id"
+
+  create_table "partners", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.string   "url"
+    t.integer  "site_id"
+    t.integer  "section_id"
+    t.string   "image_mime_type"
+    t.string   "image_name"
+    t.integer  "image_size"
+    t.integer  "image_width"
+    t.integer  "image_height"
+    t.string   "image_uid"
+    t.string   "image_ext"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 1
+  end
+
+  add_index "partners", ["position", "section_id"], :name => "index_partners_on_position_and_section_id"
+  add_index "partners", ["section_id"], :name => "index_partners_on_section_id"
+  add_index "partners", ["site_id"], :name => "index_partners_on_site_id"
+
+  create_table "preferences", :force => true do |t|
+    t.string   "key",                      :null => false
+    t.string   "value_type", :limit => 50
+    t.string   "value"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "preferences", ["key"], :name => "index_preferences_on_key", :unique => true
+
+  create_table "roles", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
+
+  add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
+  add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
   create_table "section_translations", :force => true do |t|
     t.integer  "section_id"
     t.string   "locale"
-    t.string   "title_addon"
     t.string   "path"
     t.text     "body"
     t.string   "redirect_url"
@@ -233,7 +314,6 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.string   "meta_title"
     t.text     "meta_description"
     t.string   "title"
-    t.text     "meta_keywords"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -257,36 +337,22 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.text     "body"
     t.string   "meta_title"
     t.text     "meta_description"
-    t.text     "meta_keywords"
     t.string   "redirect_url"
-    t.string   "title_addon"
     t.datetime "published_at"
-    t.boolean  "hidden",           :default => false
+    t.boolean  "hidden",            :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "menu_title"
-    t.integer  "globalized",       :default => 0
+    t.boolean  "shallow_permalink", :default => true
+    t.boolean  "robot_index",       :default => true
+    t.boolean  "robot_follow",      :default => true
+    t.boolean  "restricted",        :default => false
   end
 
   add_index "sections", ["link_id", "link_type"], :name => "index_sections_on_link_id_and_link_type"
+  add_index "sections", ["parent_id", "lft"], :name => "index_sections_on_parent_id_and_lft"
   add_index "sections", ["parent_id"], :name => "index_sections_on_parent_id"
   add_index "sections", ["site_id"], :name => "index_sections_on_site_id"
-
-  create_table "settings", :force => true do |t|
-    t.integer  "site_id"
-    t.string   "name"
-    t.text     "value"
-    t.boolean  "destroyable",             :default => true
-    t.string   "scoping"
-    t.boolean  "restricted",              :default => false
-    t.string   "callback_proc_as_string"
-    t.string   "form_value_type",         :default => "text_area", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "settings", ["name"], :name => "index_settings_on_name"
-  add_index "settings", ["site_id"], :name => "index_settings_on_site_id"
 
   create_table "site_registrations", :force => true do |t|
     t.integer "user_id"
@@ -314,18 +380,55 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.string   "meta_title"
     t.string   "subtitle"
     t.string   "timezone"
-    t.string   "locales",                  :limit => 17
-    t.boolean  "public",                                 :default => true
+    t.boolean  "public",                   :default => true
     t.text     "options"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "site_registrations_count",               :default => 0
-    t.integer  "globalized",                             :default => 0
+    t.integer  "site_registrations_count", :default => 0
     t.text     "plugins"
+    t.string   "logo_mime_type"
+    t.string   "logo_name"
+    t.integer  "logo_size"
+    t.integer  "logo_width"
+    t.integer  "logo_height"
+    t.string   "logo_uid"
+    t.string   "logo_ext"
+    t.string   "default_image_uid"
+    t.integer  "languages_count",          :default => 0
+    t.datetime "liquid_models_updated_at"
+    t.text     "page_types"
+    t.boolean  "front_page_cached",        :default => false
+    t.text     "mailer_settings"
   end
 
   add_index "sites", ["account_id"], :name => "index_sites_on_account_id"
   add_index "sites", ["host"], :name => "index_sites_on_host", :unique => true
+
+  create_table "states", :force => true do |t|
+    t.string  "name"
+    t.string  "abbr"
+    t.integer "country_id"
+  end
+
+  add_index "states", ["country_id"], :name => "index_states_on_country_id"
+
+  create_table "supports", :force => true do |t|
+    t.integer "owner_id"
+    t.string  "owner_type"
+    t.text    "infos"
+  end
+
+  add_index "supports", ["owner_id", "owner_type"], :name => "index_supports_on_owner_id_and_owner_type", :unique => true
+
+  create_table "tokenized_permissions", :force => true do |t|
+    t.integer  "permissable_id"
+    t.string   "permissable_type"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tokenized_permissions", ["permissable_id", "permissable_type"], :name => "index_tokenized_name_and_type"
 
   create_table "users", :force => true do |t|
     t.integer  "account_id"
@@ -344,17 +447,24 @@ ActiveRecord::Schema.define(:version => 20111106111111) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "roles"
     t.string   "username",                 :limit => 60
     t.string   "firstname",                :limit => 60
     t.string   "lastname",                 :limit => 60
     t.string   "preferred_language",       :limit => 5
     t.string   "timezone"
     t.integer  "site_registrations_count",                :default => 0
-    t.integer  "group_id"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.string   "perishable_token"
+    t.integer  "failed_attempts",                         :default => 0,  :null => false
+    t.datetime "last_request_at"
+    t.string   "login"
+    t.string   "authentication_token"
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"
-  add_index "users", ["group_id"], :name => "index_users_on_group_id"
+  add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
 
 end
