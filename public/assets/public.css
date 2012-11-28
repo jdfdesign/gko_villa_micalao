@@ -7284,19 +7284,9 @@ a:focus {
   border: none;
 }
 
-/* line 94, ../../app/assets/stylesheets/public.css.scss */
-.carousel-flexslider {
-  display: none;
-}
-
-/* line 97, ../../app/assets/stylesheets/public.css.scss */
-#content-tab {
-  display: none;
-}
-
 /* CUSTOMIZE THE COPYRIGHT
   -------------------------------------------------- */
-/* line 104, ../../app/assets/stylesheets/public.css.scss */
+/* line 99, ../../app/assets/stylesheets/public.css.scss */
 #copyright-container a {
   font-weight: normal;
 }
@@ -8705,20 +8695,31 @@ a:focus {
   }
 }
 @media (max-width: 767px) {
-  /* line 114, ../../app/assets/stylesheets/public.css.scss */
+  /* line 109, ../../app/assets/stylesheets/public.css.scss */
   body {
     padding-left: 0;
     padding-right: 0;
   }
 
-  /* line 118, ../../app/assets/stylesheets/public.css.scss */
+  /* line 113, ../../app/assets/stylesheets/public.css.scss */
   #main-container {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
+@media (max-width: 894px) {
+  /* line 119, ../../app/assets/stylesheets/public.css.scss */
+  .carousel-flexslider {
+    display: none;
+  }
+
+  /* line 122, ../../app/assets/stylesheets/public.css.scss */
+  #content-tab {
+    display: none;
+  }
+}
 @media (max-width: 895px) {
-  /* line 126, ../../app/assets/stylesheets/public.css.scss */
+  /* line 129, ../../app/assets/stylesheets/public.css.scss */
   .navbar-inner {
     background-color: #f89925;
     -webkit-border-radius: 0;
@@ -8730,21 +8731,21 @@ a:focus {
     padding: 0;
   }
 
-  /* line 134, ../../app/assets/stylesheets/public.css.scss */
+  /* line 137, ../../app/assets/stylesheets/public.css.scss */
   .navbar, .navbar-fixed-top {
     margin-bottom: 0;
   }
-  /* line 136, ../../app/assets/stylesheets/public.css.scss */
+  /* line 139, ../../app/assets/stylesheets/public.css.scss */
   .navbar .brand, .navbar-fixed-top .brand {
     float: none;
     text-align: center;
     margin: 18px 0;
   }
-  /* line 141, ../../app/assets/stylesheets/public.css.scss */
+  /* line 144, ../../app/assets/stylesheets/public.css.scss */
   .navbar .nav-collapse, .navbar-fixed-top .nav-collapse {
     border-top: 1px solid lightGrey;
   }
-  /* line 146, ../../app/assets/stylesheets/public.css.scss */
+  /* line 149, ../../app/assets/stylesheets/public.css.scss */
   .navbar .nav-collapse nav,
   .navbar .nav-collapse .nav, .navbar-fixed-top .nav-collapse nav,
   .navbar-fixed-top .nav-collapse .nav {
@@ -8767,21 +8768,21 @@ a:focus {
   .navbar-fixed-top .nav-collapse .nav:after {
     clear: both;
   }
-  /* line 150, ../../app/assets/stylesheets/public.css.scss */
+  /* line 153, ../../app/assets/stylesheets/public.css.scss */
   .navbar .nav-collapse .dropdown-menu, .navbar-fixed-top .nav-collapse .dropdown-menu {
     margin: 0;
   }
-  /* line 154, ../../app/assets/stylesheets/public.css.scss */
+  /* line 157, ../../app/assets/stylesheets/public.css.scss */
   .navbar .nav-collapse .nav > li,
   .navbar .nav-collapse .dropdown-menu li, .navbar-fixed-top .nav-collapse .nav > li,
   .navbar-fixed-top .nav-collapse .dropdown-menu li {
     border-bottom: 1px solid #777777;
   }
-  /* line 158, ../../app/assets/stylesheets/public.css.scss */
+  /* line 161, ../../app/assets/stylesheets/public.css.scss */
   .navbar .nav-collapse .dropdown-menu li:last-child, .navbar-fixed-top .nav-collapse .dropdown-menu li:last-child {
     border-bottom: none;
   }
-  /* line 163, ../../app/assets/stylesheets/public.css.scss */
+  /* line 166, ../../app/assets/stylesheets/public.css.scss */
   .navbar .nav-collapse .nav > li > a,
   .navbar .nav-collapse .dropdown-menu a, .navbar-fixed-top .nav-collapse .nav > li > a,
   .navbar-fixed-top .nav-collapse .dropdown-menu a {
@@ -8790,7 +8791,7 @@ a:focus {
     -moz-border-radius: 0;
     border-radius: 0;
   }
-  /* line 172, ../../app/assets/stylesheets/public.css.scss */
+  /* line 175, ../../app/assets/stylesheets/public.css.scss */
   .navbar .dropdown-menu li > a:hover,
   .navbar .dropdown-menu li > a:focus,
   .navbar .dropdown-submenu:hover > a, .navbar-fixed-top .dropdown-menu li > a:hover,
@@ -8806,7 +8807,7 @@ a:focus {
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF89925', endColorstr='#FFF78D0C', GradientType=0);
   }
-  /* line 180, ../../app/assets/stylesheets/public.css.scss */
+  /* line 183, ../../app/assets/stylesheets/public.css.scss */
   .navbar .dropdown-menu .active > a,
   .navbar .dropdown-menu .active > a:hover, .navbar-fixed-top .dropdown-menu .active > a,
   .navbar-fixed-top .dropdown-menu .active > a:hover {
@@ -8822,12 +8823,12 @@ a:focus {
   }
 }
 @media (min-width: 896px) {
-  /* line 189, ../../app/assets/stylesheets/public.css.scss */
+  /* line 192, ../../app/assets/stylesheets/public.css.scss */
   .navbar .nav-collapse {
     float: right;
   }
 
-  /* line 194, ../../app/assets/stylesheets/public.css.scss */
+  /* line 197, ../../app/assets/stylesheets/public.css.scss */
   #wrapper-wide-body {
     position: absolute;
     width: 896px;
@@ -8840,12 +8841,12 @@ a:focus {
     margin-left: -448px;
   }
 
-  /* line 204, ../../app/assets/stylesheets/public.css.scss */
+  /* line 207, ../../app/assets/stylesheets/public.css.scss */
   #main-row {
     position: relative;
   }
 
-  /* line 207, ../../app/assets/stylesheets/public.css.scss */
+  /* line 210, ../../app/assets/stylesheets/public.css.scss */
   .content-wrapper {
     position: absolute;
     right: 0px;
@@ -8861,13 +8862,13 @@ a:focus {
     color: #b7b7b7;
   }
 
-  /* line 220, ../../app/assets/stylesheets/public.css.scss */
+  /* line 223, ../../app/assets/stylesheets/public.css.scss */
   .content-inner {
     height: 570px;
     /* must have an px height for scrollpane */
   }
 
-  /* line 224, ../../app/assets/stylesheets/public.css.scss */
+  /* line 227, ../../app/assets/stylesheets/public.css.scss */
   #content-tab {
     position: absolute;
     left: -48px;
@@ -8880,7 +8881,7 @@ a:focus {
     padding-top: 12px;
   }
 
-  /* line 234, ../../app/assets/stylesheets/public.css.scss */
+  /* line 237, ../../app/assets/stylesheets/public.css.scss */
   .carousel-flexslider {
     position: absolute;
     margin: 0;
@@ -8889,7 +8890,7 @@ a:focus {
     border: none;
     border-top: 1px solid white;
   }
-  /* line 241, ../../app/assets/stylesheets/public.css.scss */
+  /* line 244, ../../app/assets/stylesheets/public.css.scss */
   .carousel-flexslider li {
     margin-right: 1px;
     cursor: pointer;
