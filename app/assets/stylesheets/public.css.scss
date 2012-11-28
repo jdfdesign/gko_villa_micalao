@@ -91,12 +91,7 @@ a:focus {
 	padding: 0;
 	border: none;
 }
-.carousel-flexslider {
-	display: none;
-}
-#content-tab {
-	display: none;
-}
+
 
 /* CUSTOMIZE THE COPYRIGHT
   -------------------------------------------------- */
@@ -118,6 +113,14 @@ a:focus {
 	#main-container {
 		padding-left: 20px;
 		padding-right: 20px;
+	}
+}
+@media (max-width: 894px) {
+	.carousel-flexslider {
+		display: none;
+	}
+	#content-tab {
+		display: none;
 	}
 }
 @media (max-width: 895px) {

@@ -18,26 +18,29 @@ $(document).ready(function() {
 		use_slider = true, // system set to false if page has no text
     gallery = $('#background-slideshow'),
     body = $("body"),
+    
     scrollpane = $('.content-inner'),
     header_height = $('header.navbar').outerHeight(),
     footer_height = $('footer.footer').outerHeight(),
     slider_tab = $("#content-tab"),
-    slider_tab_size = $("#content-tab").outerHeight(),
-    slider_max_size = 400,
+    sliderWidth = 0,
     slide_open = true,
     thumbs_tab,
     thumbs_open = true,
     scrollpane_api,
-		available_size = {w:0, h:0},
-		//TODO : should be set by rails
-    preferred_size = {
-        w: 896,
-        h: 570
-    };
+	sliderInitialized = false,
+	breakpoint = 894;
 
     /////////////////////////////////////////////////
     init_slide = function() {
-        slider_tab.bind('click',
+		
+		if(sliderInitialized || slider.length == 0) {
+			return;
+		}
+		
+		console.log(sliderInitialized + " " + slider.length)
+		
+        slider_tab.on('click',
         function(e) {
             if (!slide_open) {
                 show_slide(slider);
@@ -45,7 +48,27 @@ $(document).ready(function() {
                 hide_slide(slider);
             }
             e.preventDefault();
+			return false;
         });
+		
+		scrollpane_api = scrollpane.jScrollPane({
+	        showArrows: false,
+			autoReinitialise: true
+	    }).data('jsp');
+	
+		sliderWidth = slider.outerWidth();
+		sliderInitialized = true;
+    }
+    /////////////////////////////////////////////////
+    destroy_slide = function() {
+		if(slider.length && !sliderInitialized) {
+			return;
+		}
+        slider_tab.off('click');
+		if (typeof scrollpane_api !== "undefined" && scrollpane_api !== null) {
+			scrollpane_api.destroy();
+		}
+		sliderInitialized = false;
     }
     /////////////////////////////////////////////////
     show_slide = function(el) {
@@ -64,7 +87,7 @@ $(document).ready(function() {
 			duration: 500
 		});
 		
-        slider_tab.addClass("open");
+        slider_tab.find("i").removeClass("icon-chevron-left").addClass("icon-chevron-right");
     }
     /////////////////////////////////////////////////
     hide_slide = function(el) {
@@ -73,21 +96,20 @@ $(document).ready(function() {
         }
         slide_open = !slide_open;
 
-		el.stop().animate({'right': 300}, {
+		el.stop().animate({'right': -sliderWidth}, {
 			queue: false,
 			duration: 500
 		});
-        slider_tab.removeClass("open");
+        slider_tab.find("i").removeClass("icon-chevron-right").addClass("icon-chevron-left");
     }
 
     /////////////////////////////////////////////////
     rescale = function(e) {
-        getAvailableSize();
-		
-		if (typeof scrollpane_api !== "undefined" && scrollpane_api !== null) {
-			scrollpane_api.reinitialise();
+		if(($(window).width() > breakpoint)) {
+			init_slide();
+		} else {
+			destroy_slide();
 		}
-        
     }
     /////////////////////////////////////////////////
     getScreenSize = function() {
@@ -111,30 +133,15 @@ return 		{
             h: $(window).height()//Math.min(screenHeight, winHeight)
         }
     }
-    /////////////////////////////////////////////////
-    getAvailableSize = function() {
-        var size = getScreenSize();
-        available_size.w = Math.min(size.w, preferred_size.w);
-        available_size.h = Math.min(size.h, preferred_size.h);
-    }
-    /////////////////////////////////////////////////
-	getAvailableSize();
-	if (typeof slider !== "undefined" && slider !== null) {
-		init_slide();
-        scrollpane.jScrollPane({
-	        showArrows: false,
-			autoReinitialise: true
-	    })
-	scrollpane_api = scrollpane.data('jsp');
-	}
+
+
 
 	Slideshow.init();
 
     // Handle window.resize or orientationchange event
-    $(window).bind("throttledresize",
-    function(e) {
+    $(window).bind("throttledresize", function(e) {
         rescale(e);
-    });
+    }).trigger("throttledresize");
 
 });
 
